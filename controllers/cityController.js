@@ -1,6 +1,8 @@
 const City = require("../models/City");
 const axios = require("axios");
 const { citySchema } = require("../middleware/validate");
+const mongoose = require("mongoose");
+
 
 exports.createCity = async (req, res, next) => {
   try {
@@ -31,19 +33,25 @@ exports.getCities = async (req, res, next) => {
 
 exports.getCity = async (req, res, next) => {
   try {
+    if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+      return res.status(400).json({ message: "Invalid ID" });
+    }
+
     const city = await City.findOne({
       _id: req.params.id,
       user: req.user._id,
     });
 
-    if (!city)
+    if (!city) {
       return res.status(404).json({ message: "Not found" });
+    }
 
     res.json(city);
   } catch (err) {
     next(err);
   }
 };
+
 
 exports.updateCity = async (req, res, next) => {
   try {

@@ -59,50 +59,50 @@ This is a full-stack web application designed to provide weather information for
 | :--- | :--- | :--- |
 | POST | `/api/auth/register` | Register a new user with username, email, and password. |
 
-![alt text](image.png)
+![alt text](images/image.png)
 | POST | `/api/auth/login` | Authenticate user and return a JWT token. |
-![alt text](image-1.png)
+![alt text](images/image-1.png)
 
 ### User Profile Routes private with token req
 | Method | Endpoint | Description |
 | :--- | :--- | :--- |
 | GET | `/api/users/profile` | Retrieve the logged-in user's profile. |
 
-![alt text](image-2.png)
+![alt text](images/image-2.png)
 | PUT | `/api/users/profile` | Update user profile information. |
 
-![alt text](image-3.png)
+![alt text](images/image-3.png)
 
 ### City Management & Weather Routes with token req
 | Method | Endpoint | Description |
 | :--- | :--- | :--- |
 | POST | `/api/cities` | Save a new city to the user's list. |
 
-![alt text](image-4.png)
+![alt text](images/image-4.png)
 | GET | `/api/cities` | Get all saved cities for the user. |
 
-![alt text](image-5.png)
+![alt text](images/image-5.png)
 | GET | `/api/cities/:id` | Get details of a specific saved city. |
 
-![alt text](image-9.png)
+![alt text](images/image-9.png)
 | PUT | `/api/cities/:id` | Update a saved city's information. |
 
-![alt text](image-6.png)
+![alt text](images/image-6.png)
 | DELETE | `/api/cities/:id` | Remove a city from the user's list. |
 
-![alt text](image-7.png)
+![alt text](images/image-7.png)
 | GET | `/api/cities/weather/:city` | Fetch real-time weather data for a specific city name. |
 
-![alt text](image-8.png)
+![alt text](images/image-8.png)
 
 ###here after RENDERING
-![alt text](image-10.png)
+![alt text](images/image-10.png)
 ```POST https://weatherproj.onrender.com/api/auth/login```
 
-![alt text](image-11.png)
+![alt text](images/image-11.png)
 ```GET https://weatherproj.onrender.com/api/cities/weather/London```
 
-![alt text](image-12.png)
+![alt text](images/image-12.png)
 ```GET https://weatherproj.onrender.com/api/users/profile```
 
 

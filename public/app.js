@@ -1,4 +1,20 @@
+
+
+const rEmail = document.getElementById("regEmail");
+const rPass = document.getElementById("regPass");
+
+const lEmail = document.getElementById("loginEmail");
+const lPass = document.getElementById("loginPass");
+
+const city = document.getElementById("city");
+
+const rMsg = document.getElementById("rMsg");
+const lMsg = document.getElementById("lMsg");
+const result = document.getElementById("result");
+
 let token = "";
+
+
 
 async function register() {
 
@@ -25,6 +41,7 @@ async function register() {
   rMsg.innerText = "Registered successfully";
   rMsg.className = "success";
 }
+
 
 
 async function login() {
@@ -54,6 +71,7 @@ async function login() {
   lMsg.innerText = "Logged in successfully";
   lMsg.className = "success";
 }
+
 
 
 async function getWeather() {

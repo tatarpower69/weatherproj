@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Weather App</title>
+</head>
+<body>
+
+<h2>Register</h2>
+<input id="regEmail" placeholder="Email">
+<input id="regPass" placeholder="Password">
+<button onclick="register()">Register</button>
+
+<h2>Login</h2>
+<input id="logEmail" placeholder="Email">
+<input id="logPass" placeholder="Password">
+<button onclick="login()">Login</button>
+
+<h2>Weather</h2>
+<input id="city" placeholder="City">
+<button onclick="getWeather()">Get Weather</button>
+
+<pre id="out"></pre>
+
+<script>
+let token = "";
+
+async function register() {
+  await fetch("/api/auth/register", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      username: "user",
+      email: regEmail.value,
+      password: regPass.value
+    })
+  });
+
+  alert("Registered");
+}
+
+async function login() {
+  const res = await fetch("/api/auth/login", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      email: logEmail.value,
+      password: logPass.value
+    })
+  });
+
+  const data = await res.json();
+  token = data.token;
+
+  alert("Logged in");
+}
+
+async function getWeather() {
+  const res = await fetch("/api/cities/weather/" + city.value, {
+    headers: {
+      Authorization: "Bearer " + token
+    }
+  });
+
+  const data = await res.json();
+
+  out.textContent = JSON.stringify(data, null, 2);
+}
+</script>
+
+</body>
+</html>

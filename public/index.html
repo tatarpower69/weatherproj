@@ -1,72 +1,71 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Weather App</title>
+  <title>Weather API Demo</title>
+
+  <style>
+    body {
+      font-family: Arial;
+      max-width: 500px;
+      margin: 40px auto;
+    }
+
+    input, button {
+      width: 100%;
+      padding: 8px;
+      margin: 5px 0;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .error {
+      color: red;
+    }
+
+    .success {
+      color: green;
+    }
+  </style>
 </head>
+
 <body>
 
-<h2>Register</h2>
+<h2>Weather Project</h2>
+
+<h3>Register</h3>
+
 <input id="regEmail" placeholder="Email">
-<input id="regPass" placeholder="Password">
+<input id="regPass" type="password" placeholder="Password">
+
 <button onclick="register()">Register</button>
 
-<h2>Login</h2>
-<input id="logEmail" placeholder="Email">
-<input id="logPass" placeholder="Password">
+<p id="rMsg"></p>
+
+<hr>
+
+<h3>Login</h3>
+
+<input id="loginEmail" placeholder="Email">
+<input id="loginPass" type="password" placeholder="Password">
+
 <button onclick="login()">Login</button>
 
-<h2>Weather</h2>
-<input id="city" placeholder="City">
+<p id="lMsg"></p>
+
+<hr>
+
+<h3>Get Weather</h3>
+
+<input id="city" placeholder="City name">
+
 <button onclick="getWeather()">Get Weather</button>
 
-<pre id="out"></pre>
+<pre id="result"></pre>
 
-<script>
-let token = "";
-
-async function register() {
-  await fetch("/api/auth/register", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      username: "user",
-      email: regEmail.value,
-      password: regPass.value
-    })
-  });
-
-  alert("Registered");
-}
-
-async function login() {
-  const res = await fetch("/api/auth/login", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      email: logEmail.value,
-      password: logPass.value
-    })
-  });
-
-  const data = await res.json();
-  token = data.token;
-
-  alert("Logged in");
-}
-
-async function getWeather() {
-  const res = await fetch("/api/cities/weather/" + city.value, {
-    headers: {
-      Authorization: "Bearer " + token
-    }
-  });
-
-  const data = await res.json();
-
-  out.textContent = JSON.stringify(data, null, 2);
-}
-</script>
+<script src="app.js"></script>
 
 </body>
 </html>
